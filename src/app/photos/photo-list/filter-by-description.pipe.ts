@@ -1,24 +1,22 @@
-import {Pipe,PipeTransform} from '@angular/core';
-import { Photo } from 'alurapic/src/app/photos/photo/photo';
+import { Pipe, PipeTransform } from '@angular/core';
 
+import { Photo } from '../photo/photo';
 
-
-
-
-@Pipe({name:'filterByDescription'})
+@Pipe({ name: 'filterByDescription'})
 export class FilterByDescription implements PipeTransform {
 
-    transform(photos: Photo[], descriptionQuery: string){
+    transform(photos: Photo[], descriptionQuery: string) {
         descriptionQuery = descriptionQuery
-        .trim()
-        .toLocaleLowerCase()
+            .trim()
+            .toLowerCase();
 
-        if(descriptionQuery){
+        if(descriptionQuery) {
             return photos.filter(photo => 
                 photo.description.toLowerCase().includes(descriptionQuery)
             );
-        }else{
+        } else {
             return photos;
         }
     }
+
 }
